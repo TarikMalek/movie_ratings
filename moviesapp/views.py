@@ -9,17 +9,17 @@ from moviesapp.models import Movie
 
 
 
-
 class MoviesList(APIView):
     """
-    List all movies, or create a new movie.
+    List all movies, or create a new movie.\n
+    - expected value to create movie : {title : <string>}
+
     """
     permission_classes = (permissions.AllowAny,)
   
     def get(self, request, format=None):
         ''' 
-        list all movies in the database 
-        curl --header "Content-Type: application/json" -X GET http://127.0.0.1:8000/movies/
+        list all movies in the database \n
 
         '''
         movies = Movie.objects.all()
@@ -28,8 +28,7 @@ class MoviesList(APIView):
 
     def post(self, request, format=None):
         '''
-        create a new movie 
-        curl --header "Content-Type: application/json" -X POST http://127.0.0.1:8000/movies/ --data '{"title":"test movie7"}'
+        create a new movie \n
         '''
         serializer = MovieSerializer(data=request.data)
         if serializer.is_valid():
@@ -52,8 +51,7 @@ class MovieDetail(APIView):
 
     def get(self, request, id, format=None):
         '''
-        get single movie with id 
-        curl --header "Content-Type: application/json" -X GET http://127.0.0.1:8000/movies/{id}/
+        get single movie with id \n
         '''
         Movie = self.get_object(id)
         serializer = MovieSerializer(Movie)
@@ -61,8 +59,7 @@ class MovieDetail(APIView):
 
     def put(self, request, id, format=None):
         '''
-        update single movie with id 
-        curl --header "Content-Type: application/json" -X PUT http://127.0.0.1:8000/movies/7/ --data '{"title":"test movie77"}'
+        update single movie with id \n
         '''
         Movie = self.get_object(id)
         serializer = MovieSerializer(Movie, data=request.data)
@@ -73,8 +70,7 @@ class MovieDetail(APIView):
 
     def delete(self, request, id, format=None):
         '''
-        delete single movie with id 
-        curl --header "Content-Type: application/json" -X DELETE http://127.0.0.1:8000/movies/{id}/
+        delete single movie with id \n
         '''
         Movie = self.get_object(id)
         Movie.delete()
@@ -83,13 +79,19 @@ class MovieDetail(APIView):
 
 
 class RatingsView(APIView):
+
+    '''
+    create a new movie rating . \n
+    - expects {value:<int> ,movie_id: <int>} \n
+    - checking if movie id exists in the databse , if not we return 404 .  \n
+    - sending a context object to the serializer for value validation before creating the instance.\n
+    - if serialzier is valid we add the movie object to the instance and save it. \n
+
+    '''
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
-        '''
-        create a new movie rating 
-        curl --header "Content-Type: application/json" -X POST http://127.0.0.1:8000/api/ratings/ --data '{"value":5,"movie_id":1}'
-        '''
+      
         data = request.data
         movie_id = data['movie_id']
         movie = None

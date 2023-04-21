@@ -1,0 +1,25 @@
+** Installation & Usage Instructions for Movies App **
+
+1 - Steps to create the enviornment : 
+    - create a python virtual enviornment using virtualenv or venv 
+    - install project required files  : 
+        >> pip install requirements.txt
+
+2 - Create the database : 
+    - create app level migration : 
+        >> python manage.py makemigrations moviesapp 
+    - then create the database : 
+        >> python manage.py migrate 
+
+3 - Start the development server to test the app and view admin dashboard : 
+    - create a superuser to access django admin dashboard : 
+        >> python manage.py createsuperuser 
+    - start development server :  
+        >> python manage.py runserver 
+    - login to the admin dasboard : http://localhost:8000/admin
+
+4 - Testing & Interacting with the APIs  : 
+    - to list all movie entries or create a new movie  : http://localhost:8000/movies/ 
+    - to view/update/delete single movie : http://localhost:8000/movies/{id}/ 
+    - to create a new movie rating : http://localhost:8000/ratings/ 
+
