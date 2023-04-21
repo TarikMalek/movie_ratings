@@ -36,4 +36,4 @@ class RatingSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'value':'value is invalid , must be an integer within range [1,5]'}) 
         return data 
     
-    # {"value" :"a","movie_id":9}
+   

@@ -23,3 +23,5 @@
     - to view/update/delete single movie : http://localhost:8000/movies/{id}/ 
     - to create a new movie rating : http://localhost:8000/ratings/ 
 
+
+** github project files : https://github.com/TarikMalek/movie_ratings **
