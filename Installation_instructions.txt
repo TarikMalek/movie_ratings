@@ -18,10 +18,14 @@
         >> python manage.py runserver 
     - login to the admin dasboard : http://localhost:8000/admin
 
-4 - Testing & Interacting with the APIs  : 
+4 - Interacting with the APIs  : 
     - to list all movie entries or create a new movie  : http://localhost:8000/movies/ 
     - to view/update/delete single movie : http://localhost:8000/movies/{id}/ 
     - to create a new movie rating : http://localhost:8000/ratings/ 
+
+5- Running Tests (TDD):
+    - run the following command : 
+        >> python manage.py test
 
 
 ** github project files : https://github.com/TarikMalek/movie_ratings **
